@@ -1,0 +1,10 @@
+Create Database:
+CREATE DATABASE gymdb;
+USE gymdb;
+Create Table:
+CREATE TABLE members (
+ memberid INT PRIMARY KEY AUTO_INCREMENT,
+ name VARCHAR(100) NOT NULL,
+ membershiptype VARCHAR(50) NOT NULL,
+ startdate DATE NOT NULL,
+ enddate DATE NOT NULL);
