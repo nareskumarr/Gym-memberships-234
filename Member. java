@@ -1,0 +1,21 @@
+package com.gym.model;
+import java.time.LocalDate;
+public class Member {
+ private int memberId;
+ private String name;
+ private String membershipType;
+ private LocalDate startDate;
+ private LocalDate endDate;
+ public Member() {}
+ public int getMemberId() { return memberId; }
+public void setMemberId(int memberId) { this.memberId = memberId; }
+ public String getName() { return name; }
+ public void setName(String name) { this.name = name; }
+ public String getMembershipType() { return membershipType; }
+ public void setMembershipType(String membershipType) { this.membershipType = 
+membershipType; }
+ public LocalDate getStartDate() { return startDate; }
+ public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
+ public LocalDate getEndDate() { return endDate; }
+ public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+}
