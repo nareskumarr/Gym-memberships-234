@@ -1,0 +1,44 @@
+package com.gym.servlet;
+import java.io.IOException;
+import java.time.LocalDate;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import com.gym.dao.MemberDAO;
+import com.gym.dao.MemberDAOImpl;
+import com.gym.model.Member;
+@WebServlet("/addMember")
+public class AddMemberServlet extends HttpServlet {
+ @Override
+ protected void doPost(HttpServletRequest request, HttpServletResponse response)
+ throws ServletException, IOException {
+ try {
+ String name = request.getParameter("name");
+String membershipType = request.getParameter("membershiptype");
+ String startDateStr = request.getParameter("startdate");
+ String endDateStr = request.getParameter("enddate");
+ if (name == null || membershipType == null ||
+ startDateStr == null || endDateStr == null ||
+ name.isEmpty() || membershipType.isEmpty() ||
+ startDateStr.isEmpty() || endDateStr.isEmpty()) {
+ response.getWriter().println("All fields are required!");
+ return;
+ }
+ LocalDate startDate = LocalDate.parse(startDateStr);
+ LocalDate endDate = LocalDate.parse(endDateStr);
+ Member member = new Member();
+ member.setName(name);
+ member.setMembershipType(membershipType);
+ member.setStartDate(startDate);
+ member.setEndDate(endDate);
+ MemberDAO dao = new MemberDAOImpl();
+ dao.addMember(member);
+ response.sendRedirect("viewMember");
+ } catch (Exception e) {
+ e.printStackTrace();
+ response.getWriter().println("Error Adding Member: " + e.getMessage());
+ }
+ }
+}
